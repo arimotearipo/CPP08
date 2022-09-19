@@ -21,9 +21,10 @@ class Span
 
 		unsigned int	length(void) const;
 		void			addNumber(int num);
-		int				shortestSpan();
-		int				longestSpan();
+		long			shortestSpan();
+		long			longestSpan();
 		void			printContainer(void);
+		void			printSorted(void);
 
 		int &operator[](unsigned int i);
 	

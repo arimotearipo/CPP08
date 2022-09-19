@@ -1,4 +1,6 @@
 #include "Span.hpp"
+#include "colours.h"
+
 
 Span::Span(void){}
 
@@ -37,40 +39,42 @@ void	Span::addNumber(int num)
 	this->vec.push_back(num);
 }
 
-int		Span::shortestSpan(void)
+long		Span::longestSpan(void)
 {
-	std::sort(vec.begin(), vec.end());
-
-	std::vector<int>::iterator cur;
-	std::vector<int>::iterator next = cur + 1;
-	int	lowest = std::numeric_limits<int>::max();
-	int temp;
-	for (cur = vec.begin(); next != vec.end(); cur++)
-	{
-		next = cur + 1;
-		temp = *next - *cur;
-		if (abs(temp) <= lowest)
-			lowest = abs(temp);
-	}
-	return (lowest);
+	if (vec.size() < 2)
+		throw NoSpanException();
+	std::vector<int> temp_vec = vec;
+	std::sort(temp_vec.begin(), temp_vec.end());
+	std::vector<int>::iterator first;
+	std::vector<int>::iterator last;
+	long	longest;
+	first = temp_vec.begin();
+	last = temp_vec.end() - 1;
+	long l_first = static_cast<long>(*first);
+	long l_last = static_cast<long>(*last);
+	longest = abs(l_last - l_first);
+	return (longest);
 }
 
-int		Span::longestSpan(void)
+long		Span::shortestSpan(void)
 {
-	std::sort(vec.begin(), vec.end());
-
-	std::vector<int>::iterator cur;
+	if (vec.size() < 2)
+		throw NoSpanException();
+	std::vector<int> temp_vec = vec;
+	std::sort(temp_vec.begin(), temp_vec.end());
+	long 	max = 2147483647;
+	long	min = -2147483648;
+	long	shortest = max - min;
+	std::vector<int>::iterator cur = temp_vec.begin();
 	std::vector<int>::iterator next = cur + 1;
-	int	highest = 0;
-	int temp;
-	for (cur = vec.begin(); next != vec.end(); cur++)
+	while (next != temp_vec.end())
 	{
+		if (abs(static_cast<long>(abs(*next - *cur))) <= shortest)
+			shortest = abs(*next - *cur);
+		cur++;
 		next = cur + 1;
-		temp = *next - *cur;
-		if (abs(temp) >= highest)
-			highest = abs(temp);
 	}
-	return (highest);
+	return (shortest);
 }
 
 void	Span::printContainer(void)
@@ -78,6 +82,15 @@ void	Span::printContainer(void)
 	for (std::vector<int>::iterator i = vec.begin(); i != vec.end(); i++)
 		std::cout << *i << " ";
 	std::cout << std::endl;
+}
+
+void	Span::printSorted(void)
+{
+	std::vector<int> temp_vec = vec;
+	std::sort(temp_vec.begin(), temp_vec.end());
+	for (std::vector<int>::iterator i = temp_vec.begin(); i != temp_vec.end(); i++)
+		std::cout << *i << " ";
+	std::cout << std:: endl;
 }
 
 const char *Span::NoSpanException::what() const throw()
