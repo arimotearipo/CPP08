@@ -13,18 +13,26 @@ using std::ostream;
 
 class Span
 {
+	private:
+		Span(void);			// just putting the default constructor here because the Span class shouldn't be declared without parameter
+		unsigned int		max_size;
+		std::vector<int>	vec;
+
 	public:
 		Span(unsigned int n);
 		Span(Span const &tocopy);
 		Span &operator=(Span const &toassign);
 		~Span(void);
 
-		unsigned int	length(void) const;
-		void			addNumber(int num);
-		long			shortestSpan();
-		long			longestSpan();
-		void			printContainer(void);
-		void			printSorted(void);
+		std::vector<int> 	getVec(void) const;
+		unsigned int		length(void) const;
+		void				addNumber(int num);
+		void				addNumberRandom(int lower, int upper);
+		void				addNumberRange(int lower, int upper);
+		long				shortestSpan();
+		long				longestSpan();
+		void				printContainer(void);
+		void				printSorted(void);
 
 		int &operator[](unsigned int i);
 	
@@ -42,11 +50,6 @@ class Span
 		{
 			virtual const char *what() const throw();
 		};
-
-	private:
-		Span(void);			// just putting the default constructor here because the Span class shouldn't be declared without parameter
-		unsigned int		max_size;
-		std::vector<int>	vec;
 };
 
 

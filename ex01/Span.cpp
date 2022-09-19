@@ -14,7 +14,10 @@ Span::Span(Span const &tocopy)
 Span &Span::operator=(Span const &toassign)
 {
 	if (this != &toassign)
-		*this = toassign;
+	{
+		this->max_size = toassign.length();
+		this->vec = toassign.getVec();
+	}
 	return (*this);
 }
 
@@ -27,9 +30,34 @@ int &Span::operator[](unsigned int i)
 	return (this->vec[i]);
 }
 
+std::vector<int>	Span::getVec(void) const
+{
+	return (this->vec);
+}
+
 unsigned int	Span::length(void) const
 {
 	return (this->max_size);
+}
+
+void	Span::addNumberRange(int lower, int upper)
+{
+	srand(time(NULL));
+	long to_add = abs(upper - lower);
+	if (this->vec.size() + to_add > this->max_size)
+		throw ExceedLimitException();
+	for (unsigned i = 0; i < this->length(); i++)
+		this->addNumber(lower + rand() % to_add);
+}
+
+void	Span::addNumberRange(int lower, int upper)
+{
+	srand(time(NULL));
+	long to_add = abs(upper - lower);
+	if (this->vec.size() + to_add > this->max_size)
+		throw ExceedLimitException();
+	for (unsigned i = lower; i <= upper; i++)
+		this->addNumber(i);
 }
 
 void	Span::addNumber(int num)

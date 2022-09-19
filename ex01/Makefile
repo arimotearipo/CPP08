@@ -1,6 +1,6 @@
 CC = c++ -std=c++98
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 SRCS = main.cpp Span.cpp
 
@@ -26,3 +26,6 @@ fclean:		clean
 
 
 re:			fclean all
+
+l:			all
+			./span
