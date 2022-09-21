@@ -2,11 +2,11 @@ CC = c++ -std=c++98
 
 FLAGS = -Wall -Wextra -Werror -fsanitize=address
 
-SRCS = main.cpp MutantStack.tpp
+SRCS = main.cpp
 
 HEADERS = MutantStack.hpp
 
-OBJS = main.o MutantStack.o
+OBJS = main.o
 
 NAME = mutantstack
 
