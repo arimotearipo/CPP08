@@ -40,13 +40,14 @@ unsigned int	Span::length(void) const
 	return (this->max_size);
 }
 
-void	Span::addNumberRange(int lower, int upper)
+void	Span::addNumberRandom(int lower, int upper)
 {
 	srand(time(NULL));
 	long to_add = abs(upper - lower);
 	if (this->vec.size() + to_add > this->max_size)
 		throw ExceedLimitException();
-	for (unsigned i = 0; i < this->length(); i++)
+	int len_cast = this->length();
+	for (int i = 0; i < len_cast; i++)
 		this->addNumber(lower + rand() % to_add);
 }
 
@@ -56,7 +57,7 @@ void	Span::addNumberRange(int lower, int upper)
 	long to_add = abs(upper - lower);
 	if (this->vec.size() + to_add > this->max_size)
 		throw ExceedLimitException();
-	for (unsigned i = lower; i <= upper; i++)
+	for (int i = lower; i <= upper; i++)
 		this->addNumber(i);
 }
 
