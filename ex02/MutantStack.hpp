@@ -28,7 +28,7 @@ class MutantStack : public std::stack<T>
 
 		iterator				begin(void)
 		{
-			return (this->c.begin());
+			return (this->c.begin()); // c is a member object of stack and it is the object of the underlying container
 		}
 
 		iterator				end(void)
