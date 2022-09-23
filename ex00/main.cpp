@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 	int	avr = atoi(av[2]); // range of values to be filled into the array (the smaller the range per array size, the higher the chance to find the value)
 	int	tf = atoi(av[3]); // (to find) the value you want to find in the array
 
-	int as2 = 100;
+	// int as2 = 100;
 	cout << UWHT "Instantiating an array<int> type..." RESET << endl;
 	std::vector<int> int_vec;
 	cout << endl;

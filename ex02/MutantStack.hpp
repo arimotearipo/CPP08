@@ -74,7 +74,7 @@ MutantStack<T>::MutantStack(void)
 }
 
 template<typename T>
-MutantStack<T>::MutantStack(MutantStack<T> const &tocopy)
+MutantStack<T>::MutantStack(MutantStack<T> const &tocopy) : std::stack<T>(tocopy)
 {
 	cout << BLU "[MUTANTSTACK CLASS CONSTRUCTED BY COPY" RESET << endl;
 }
@@ -83,6 +83,8 @@ template<typename T>
 MutantStack<T> &MutantStack<T>::operator=(MutantStack<T> const &toassign)
 {
 	cout << BLU "[MUTANTSTACK CLASS CONSTRUCTED BY ASSIGNMENT]" RESET << endl;
+	std::stack<T>() = toassign;
+	return (*this);
 }
 
 template<typename T>
